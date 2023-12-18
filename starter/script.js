@@ -39,6 +39,13 @@ function renderSearchHistory () {
 
 }
 
+if (localStorage.getItem("cityName")){
+    let initialHistoryArray = JSON.parse(localStorage.getItem("cityName"))
+    if (Array.isArray(initialHistoryArray)){
+        searchHistory = initialHistoryArray
+        renderSearchHistory()
+    } 
+    } 
 
 function renderCurrentDay (url) {
 
@@ -46,7 +53,6 @@ function renderCurrentDay (url) {
         .then(function (response) {
             return response.json()
         }).then(function (data) {
-            console.log(data)
             
             let todaysDate = today.format("DD/MM/YYYY")
 
@@ -143,7 +149,7 @@ $("#search-button").on("click", function(event) {
     
     queryURL = forecastApiURL + "q=" + searchString + apiKey + units
 
-    
+    localStorage.setItem("cityName", JSON.stringify(searchHistory))
 
         
     renderCurrentDay(queryURL)
