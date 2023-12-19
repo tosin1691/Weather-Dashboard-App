@@ -59,16 +59,21 @@ function renderCurrentDay (url) {
         
             let todaysWeatherEL = $("<div>")
             let cityDateDisplayEl = $("<div>")
+            cityDateDisplayEl.addClass("today-date-container")
             let todaysWeatherIconCode = data.list[0].weather[0].icon
             let cityNameEl = $("<h2>")
+            cityNameEl.addClass("city-name")
             cityNameEl.text(data.city.name + " " + "(" + todaysDate + ")" + " ")
             let todaysIconDisplayed = $("<img>")
-            todaysIconDisplayed.attr({"src": weatherIconURL + todaysWeatherIconCode + ".png", "class": "weather-icon", "alt": "weather icon" })
+            todaysIconDisplayed.attr({"src": weatherIconURL + todaysWeatherIconCode + ".png", "class": "weather-icon", "alt": "weather icon", "id": "currentDay-icon" })
             let todaysTempEl = $("<p>")
+            todaysTempEl.addClass("current-condition")
             todaysTempEl.text("Temp: " + data.list[0].main.temp + " °C")
             let todaysWindEl = $("<p>")
+            todaysWindEl.addClass("current-condition")
             todaysWindEl.text("Wind: " + (data.list[0].wind.speed * 3.6).toFixed(2) + " KPH")
             let todaysHumidityEl = $("<p>")
+            todaysHumidityEl.addClass("current-condition")
             todaysHumidityEl.text("Humidity: " + data.list[0].main.humidity + "%")
 
             cityDateDisplayEl.append(cityNameEl, todaysIconDisplayed)
@@ -93,8 +98,10 @@ function render5DayForecast (url) {
 
                 if (weatherForecastData[i].dt_txt.search("09:00:00") != -1){
                     let forecastWeatherEL = $("<div>")
+                    forecastWeatherEL.addClass("forecast-container col-lg-2")
 
                     let forecastDateDisplayEl = $("<h3>")
+                    forecastDateDisplayEl.addClass("forecast-date")
                     let forecastDate = weatherForecastData[i].dt_txt
                     const forecastDateArray = forecastDate.split(" ")
                     forecastDate = dayjs(forecastDateArray[0]).format("DD/MM/YYYY")
@@ -102,15 +109,19 @@ function render5DayForecast (url) {
 
                     let forecastIconCode = weatherForecastData[i].weather[0].icon
                     let forecastIconDisplayed = $("<img>")
+                    forecastIconDisplayed.addClass("forecast-icon")
                     forecastIconDisplayed.attr({"src": weatherIconURL + forecastIconCode + ".png", "class": "weather-icon", "alt": "weather icon" })
 
                     let forecastTempEl = $("<p>")
+                    forecastTempEl.addClass("forecast-condition")
                     forecastTempEl.text("Temp: " + weatherForecastData[i].main.temp + " °C")
 
                     let forecastWindEl = $("<p>")
+                    forecastWindEl.addClass("forecast-condition")
                     forecastWindEl.text("Wind: " + (weatherForecastData[i].wind.speed * 3.6).toFixed(2) + " KPH")
 
                     let forecastHumidityEl = $("<p>")
+                    forecastHumidityEl.addClass("forecast-condition")
                     forecastHumidityEl.text("Humidity: " + weatherForecastData[i].main.humidity + "%")
 
                     forecastWeatherEL.append(forecastDateDisplayEl, forecastIconDisplayed, forecastTempEl, forecastWindEl, forecastHumidityEl)
