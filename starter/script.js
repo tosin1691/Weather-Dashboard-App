@@ -1,7 +1,8 @@
+// The below function essentially only executes the DOM has loaded
 $(document).ready(function(){
 
+//Below is declaring variables to be used for coding the weather app
 let today = dayjs()
-dayjs.extend(window.dayjs_plugin_customParseFormat)
 
 let weatherIconURL = "https://openweathermap.org/img/wn/"
 let forecastApiURL = "https://api.openweathermap.org/data/2.5/forecast?"
@@ -10,12 +11,12 @@ let units = "&units=metric"
 let searchString = ""
 let queryURL
 
-
+// below is an empty array which will take in search history from user
 let searchHistory = []
 
 
 
-
+// function to display search history in the browser
 function renderSearchHistory () {
 
 
@@ -39,6 +40,8 @@ function renderSearchHistory () {
 
 }
 
+
+// the below get saved search history from local storage and displays it in the browser
 if (localStorage.getItem("cityName")){
     let initialHistoryArray = JSON.parse(localStorage.getItem("cityName"))
     if (Array.isArray(initialHistoryArray)){
@@ -47,6 +50,8 @@ if (localStorage.getItem("cityName")){
     } 
     } 
 
+
+// the below function displays current day weather conditions using data requested from the openweather map api. dayJS has also been utilised in this function and it takes in url as a parameter
 function renderCurrentDay (url) {
 
     fetch(url)
@@ -84,6 +89,8 @@ function renderCurrentDay (url) {
         })
 
 }
+
+// the below function displays 5 day weather forecast including details of weather conditions using data requested from the openweather map api. dayJS has also been utilised in this function and it takes in url as a parameter
 
 function render5DayForecast (url) {
 
@@ -136,6 +143,7 @@ function render5DayForecast (url) {
 }
 
 
+// the below calls the renderCurrentDay(), render5DayForecast() and the renderSearchHistory() functions once user has inputted a value and clicked the search button.
 
 $("#search-button").on("click", function(event) {
     event.preventDefault()
@@ -175,6 +183,8 @@ $("#search-button").on("click", function(event) {
     
 })
 
+
+// the below function displays weather results for current day and forecast by calling the renderCurrentDay(), render5DayForecast()renderCurrentDay().
 function displayWeather (){
 
     let citySelected = $(this).attr("data-city")
@@ -187,7 +197,7 @@ function displayWeather (){
     render5DayForecast(cityQueryUrl)
 
 }
-
+    // the below calls the displayWeather finction once search history button is clicked
     $(document).on("click", ".history-button", displayWeather);
 
    
