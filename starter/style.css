@@ -1,8 +1,5 @@
-/* .row{
-    display: flex !important;
 
-} */
-
+ /* The below styles the input bar, search button and search history buttons */
 aside {
     padding-left: 50px !important;
 }
@@ -17,26 +14,25 @@ aside {
     margin-top: 10px;
 }
 
-
-.weather-search {
-margin: 0 10px 15px 0;
-height: 2.5rem;
-width: 300px !important;
-border-radius: 10px !important;
-}
-
-.search-button {
+.weather-search, .search-button, .history-button{
     width: 300px !important;
     border-radius: 10px !important;
 }
 
+
+.weather-search {
+margin: 0 10px 15px 0;
+height: 2.5rem;
+}
+
+
 .history-button{
-    width: 300px;
-    border-radius: 10px !important;
     margin: 5px 0;
 }
 
-#today{
+/* The below add styles to search results showing weather for today and forecast */
+
+.today-result{
     padding: 30px 0 10px 10px;
     margin-bottom: 50px;
     border: 2px black solid;
@@ -45,13 +41,16 @@ border-radius: 10px !important;
 
 .forecast-container {
     border: 1px black solid;
-    margin: 0 25px 0 10px;
+    margin: 0 10px 0 5px;
     padding: 10px 0 0 20px;
     width: 200px;
-    background-color:darkslategray;
+    background-color:rgb(87, 118, 118);
     color: white;
 }
 
-/* #forecast-title {
-    padding-left: 10px;
-} */
+.today-date-container {
+    display: flex;
+}
+
+
+

@@ -58,6 +58,7 @@ function renderCurrentDay (url) {
 
         
             let todaysWeatherEL = $("<div>")
+            todaysWeatherEL.addClass("today-result")
             let cityDateDisplayEl = $("<div>")
             cityDateDisplayEl.addClass("today-date-container")
             let todaysWeatherIconCode = data.list[0].weather[0].icon
@@ -94,11 +95,12 @@ function render5DayForecast (url) {
 
             $("#forecast-title").text("5-Day Forecast:")
 
+
             for(i = 0; i < weatherForecastData.length; i ++){
 
                 if (weatherForecastData[i].dt_txt.search("09:00:00") != -1){
                     let forecastWeatherEL = $("<div>")
-                    forecastWeatherEL.addClass("forecast-container col-lg-2")
+                    forecastWeatherEL.addClass("forecast-container col-xs-2")
 
                     let forecastDateDisplayEl = $("<h3>")
                     forecastDateDisplayEl.addClass("forecast-date")
@@ -160,6 +162,7 @@ $("#search-button").on("click", function(event) {
     
     queryURL = forecastApiURL + "q=" + searchString + apiKey + units
 
+    
     localStorage.setItem("cityName", JSON.stringify(searchHistory))
 
         
